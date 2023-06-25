@@ -18,11 +18,6 @@ public abstract class Conta {
 
     // métodos de validação -----------------------------------------------------
     
-    /** STATIC - Verifica se a string informada é composta apenas por número e retorna um booleano */
-    private static boolean ehApenasNumero(String inputSenha){
-        return inputSenha.matches("\\d+");
-    }
-    
     /** STATIC - Recebe um valor float e exibe uma mensagem de erro se o valor for negativo, além de retornar um booleano */
     private static boolean valorPositivo(float x){
         if(x<0){
@@ -34,7 +29,7 @@ public abstract class Conta {
 
     /** STATIC - Verifica se a string informada é composta apenas por números e tem o tamanho de uma senha. Retorna um booleano */
     private static boolean ehSenhaValida(String inputSenha){
-        return ehApenasNumero(inputSenha) && inputSenha.length()==Conta.TAMANHO_SENHA;
+        return AuxLib.ehApenasNumero(inputSenha) && inputSenha.length()==Conta.TAMANHO_SENHA;
     }
 
     /** PROTECTED - Recebe um valor float e verifica se existe saldo suficiente para sacar esse valor e exibe uma mensagem de erro, além de retorna um booleano */
