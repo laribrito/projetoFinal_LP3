@@ -1,7 +1,7 @@
 package contas;
 import add.AuxLib;
 
-public class Conta {
+public abstract class Conta {
     // Toda conta terá:
     //  Uma senha para realizar saques que deve ser cadastrada na inicialização do objeto
     //  Um número que a identifique
@@ -13,7 +13,7 @@ public class Conta {
 
     // atributos de instância
     private int numeroConta;
-    private float saldo;
+    protected float saldo;
     private String senha;
 
     // métodos de validação -----------------------------------------------------
@@ -52,7 +52,7 @@ public class Conta {
     }
 
     /** Verifica se a string informada corresponde à senha do usuário e exibe uma mensagem de erro se não for a correta. Retorna um booleano */
-    private boolean checaSenha(String inputSenha){
+    protected boolean checaSenha(String inputSenha){
         if(!ehSenhaCorreta(senha)) {
             System.out.println("A senha não está correta");
             return false;
@@ -94,6 +94,11 @@ public class Conta {
         return false;
     }
 
+    public int getNumeroConta() {
+        return numeroConta;
+    }
+
+    @Override
     public String toString(){
         String txt;
         txt  = "\n\n Informações da Conta: \n";
