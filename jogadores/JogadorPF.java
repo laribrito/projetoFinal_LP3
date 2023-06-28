@@ -15,7 +15,7 @@ public class JogadorPF extends Jogador {
 
         // gera um cpf com 11 dígitos
         for(int x=1; x<=TAMANHO_DOCUMENTO; x++){
-            cpf+=AuxLib.novoInteiro(9);
+            cpf+=AuxLib.novoInteiroStr(9);
         }
 
         return cpf;

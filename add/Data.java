@@ -7,7 +7,7 @@ public class Data{
 	private boolean valido=false;
 	private final String[] nomeMeses = {"Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}; 
 
-	Data(int d, int m, int a){
+	public Data(int d, int m, int a){
 		if(verificarData(d, m, a)){
 			dia = d;
 			mes = m;
@@ -17,15 +17,15 @@ public class Data{
         }
 	}
 
-	Data(){
+	public Data(){
 		this(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 	}
 
-	Data(int dia){
+	public Data(int dia){
 		this(dia, Calendar.getInstance().get(Calendar.MONTH)+1);
 	}
 
-	Data(int dia, int mes){
+	public Data(int dia, int mes){
 		this(dia, mes, Calendar.getInstance().get(Calendar.YEAR));
 	}
 

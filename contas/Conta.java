@@ -58,7 +58,7 @@ public abstract class Conta {
     // Construtor ----------------------------------------------------------------------------
 
     /** O objeto só deve ser criado se a senha informada for válida, contendo somente número e com tamanho como especificado na classe */
-    public Conta(String senha){
+    protected Conta(String senha){
         if(ehSenhaValida(senha)){
             this.senha = senha;
             numeroConta = numero_livre++;
@@ -87,6 +87,17 @@ public abstract class Conta {
         }
 
         return false;
+    }
+
+    static public String geraSenha(){
+        String senha="";
+
+        // gera uma senha
+        for(int x=1; x<=TAMANHO_SENHA; x++){
+            senha+=AuxLib.novoInteiroStr(9);
+        }
+
+        return senha;
     }
 
     public int getNumeroConta() {

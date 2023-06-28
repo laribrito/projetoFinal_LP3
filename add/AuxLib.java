@@ -8,9 +8,14 @@ public class AuxLib {
 
     static private Random gerador = new Random();
 
-    /** STATIC - Retorna um número entre 0 e o valor absoluto de max */
-    static public String novoInteiro(int max){
+    /** STATIC - Retorna um número entre 0 e o valor absoluto de max como String */
+    static public String novoInteiroStr(int max){
         return String.valueOf(gerador.nextInt(Math.abs(max+1)));
+    }
+
+    /** STATIC - Retorna um número entre 0 e o valor absoluto de max como int */
+    static public int novoInteiro(int max){
+        return gerador.nextInt(Math.abs(max+1));
     }
 
     /** STATIC - Verifica se a string informada é composta apenas por número e retorna um booleano */

@@ -18,7 +18,7 @@ public class JogadorPJ extends Jogador {
         for(int x=1; x<=TAMANHO_DOCUMENTO; x++){
             if(x>=9 && x < 12) cnpj+="0";
             else if (x==12) cnpj+="1";
-            else cnpj+=AuxLib.novoInteiro(9);
+            else cnpj+=AuxLib.novoInteiroStr(9);
         }
 
         return cnpj;

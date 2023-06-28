@@ -9,7 +9,7 @@ public abstract class Historia {
         return p.getNome()=="";
     }
 
-    public Historia(Jogador p){
+    protected Historia(Jogador p){
         if(verificaJogador(p)){
             player = p;
         } else {

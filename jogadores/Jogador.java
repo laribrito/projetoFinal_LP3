@@ -45,7 +45,7 @@ abstract public class Jogador{
     
     // Construtor ----------------------------------------------------------------------------
     
-    public Jogador(String nome, Data nascimento, String local){
+    protected Jogador(String nome, Data nascimento, String local){
         if(validaNome(nome) && validaLocalNascimento(local) && validaLocalNascimento(local)){
             this.nome = nome;
             dataNasc = nascimento;
