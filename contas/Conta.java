@@ -5,7 +5,7 @@ public abstract class Conta {
     // Toda conta terá:
     //  Uma senha para realizar saques que deve ser cadastrada na inicialização do objeto
     //  Um número que a identifique
-    //  Saldo inicial de R$ 0,00
+    //  Saldo inicial aleatório
 
     // atributos de classe
     static final private int TAMANHO_SENHA = 4;
@@ -62,7 +62,7 @@ public abstract class Conta {
         if(ehSenhaValida(senha)){
             this.senha = senha;
             numeroConta = numero_livre++;
-            saldo = 0;
+            saldo = AuxLib.novoInteiro_p(10, 8, 1000000, 2);
         } else {
             System.out.println("A senha não é válida! Digite uma senha de tamanho "+ TAMANHO_SENHA +" somente com números");
         }
@@ -70,7 +70,7 @@ public abstract class Conta {
 
     // Ações públicas -------------------------------------------------------------------------
 
-    /** Para pode sacar o responsável deve ter saldo e digitar a senha correta. Retorna um booleano */
+    /** Para poder sacar o responsável deve ter saldo e digitar a senha correta. Retorna um booleano */
     public boolean sacar(float valor, String senha){
         if(checaSenha(senha) && podeSacar(valor)){
             this.saldo -= valor;

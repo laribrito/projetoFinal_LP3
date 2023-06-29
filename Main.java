@@ -17,9 +17,11 @@ public class Main {
     public static final String[] nomes= {"Grey", "Catnip", "Yuri", "George", "Tobias", "Judas"};
 
     public static void main(String[] args) {
+        Jogador player;
         // intro();
         // instrucoes();
-        inicio();
+        player = inicio();
+        System.out.println(player);
     }
 
     public static void intro(){
@@ -59,7 +61,7 @@ public class Main {
         return valor>=1 && valor <=max;
     }
 
-    public static void inicio(){
+    public static Jogador inicio(){
         int opc;
         limpaTela();
         System.out.println("Inicialmente "+estiloTXT1("você pode") +" escolher entre "+ estiloTXT1("ser uma pessoa") +",");
@@ -75,9 +77,8 @@ public class Main {
 
         opc = getOpc(2);  
 
-        if(opc==1) criaPersonagem(false);
-        else criaPersonagem(true);
-
+        if(opc==1) return criaPersonagem(false);
+        else return criaPersonagem(true);
     } 
 
     public static Jogador criaPersonagem(boolean ehAleatorio){
@@ -88,21 +89,21 @@ public class Main {
             int opcNome, dia, mes, ano, opcLocalNasc, opcTipoPessoa;
             
             //nome
-            opcNome = AuxLib.novoInteiro(nomes.length);
-            nome = nomes[opcNome];
+            opcNome = AuxLib.novoInteiro_nl(nomes.length);
+            nome = nomes[opcNome-1];
 
             //uma data de nascimento
-            dia = AuxLib.novoInteiro(28);
-            mes = AuxLib.novoInteiro(12);
+            dia = AuxLib.novoInteiro_nl(27);
+            mes = AuxLib.novoInteiro_nl(11);
             ano = AuxLib.novoInteiro(2023)-AuxLib.novoInteiro(1000);
             nasc = new Data(dia, mes, ano);
 
             //um local de nascimento
-            opcLocalNasc = AuxLib.novoInteiro(locaisDeNascimento.length);
-            localNasc = locaisDeNascimento[opcLocalNasc];
+            opcLocalNasc = AuxLib.novoInteiro_nl(locaisDeNascimento.length);
+            localNasc = locaisDeNascimento[opcLocalNasc-1];
 
             //pessoa ou empresa, conta e tipo jogador
-            opcTipoPessoa = AuxLib.novoInteiro(2);
+            opcTipoPessoa = AuxLib.novoInteiro(1);
             if(opcTipoPessoa==1){
                 senhaConta = Conta.geraSenha();
                 ContaPessoaFisica conta = new ContaPessoaFisica(senhaConta);
@@ -112,7 +113,7 @@ public class Main {
             } else {
                 senhaConta = Conta.geraSenha();
                 ContaPessoaJuridica conta = new ContaPessoaJuridica(senhaConta);
-                documento = JogadorPF.geraCPF();
+                documento = JogadorPJ.geraCNPJ();
                 JogadorPJ jogador = new JogadorPJ(nome, nasc, localNasc, conta, documento);
                 return jogador;
             }

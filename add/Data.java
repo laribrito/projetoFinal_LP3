@@ -37,17 +37,7 @@ public class Data{
 		return valido;
 	}	
 
-	public String stringData(){
-		String texto;
-		if (valido){
-			texto = ano<0? dia+"/"+mes+"/"+(ano*(-1))+" A.C.": dia+"/"+mes+"/"+ano;
-		} else {
-			texto = "Essa data não é válida";
-		}
-		return texto;
-	}
-
-	public String stringDataExtenso(){
+	public String toString(){
         String texto;
 		if(!valido){
             texto = "Essa data não é válida";

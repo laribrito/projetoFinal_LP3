@@ -55,6 +55,7 @@ public class ContaPessoaJuridica extends Conta {
         return false;
     }
 
+    @Override
     public String toString(){
         String txt;
         txt  = super.toString();

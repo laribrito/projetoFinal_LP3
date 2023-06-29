@@ -81,4 +81,14 @@ abstract public class Jogador{
     public String getNome() {
         return nome;
     }
+
+    @Override
+    public String toString(){
+        String txt="";
+
+        txt+="Seu nome é "+nome+"\n";
+        txt+="Nasceu em "+ localNasc +", "+dataNasc.toString()+"\n";
+
+        return txt;
+    }
 }

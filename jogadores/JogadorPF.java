@@ -30,6 +30,21 @@ public class JogadorPF extends Jogador {
         }
     }
 
+    private String toStringCPF() {
+        String cpfFormatado;
+
+        // Adiciona os pontos e traços de formatação
+        cpfFormatado=cpf.substring(0, 3);
+        cpfFormatado+=".";
+        cpfFormatado+=cpf.substring(3, 6);
+        cpfFormatado+=".";
+        cpfFormatado+=cpf.substring(6, 9);
+        cpfFormatado+="-";
+        cpfFormatado+=cpf.substring(9);
+
+        return cpfFormatado;
+    }
+
     public JogadorPF(String nome, Data nasc, String localNasc, ContaPessoaFisica conta, String cpf){
         super(nome, nasc, localNasc);
         if(validaConta(conta) && validaCPF(cpf)){
@@ -43,5 +58,16 @@ public class JogadorPF extends Jogador {
     @Override
     public Conta getConta() {
         return conta;
+    }
+
+    @Override
+    public String toString(){
+        String txt;
+
+        txt = super.toString();
+        txt+= "Seu cpf é: " + toStringCPF() +"\n";        
+        txt+= conta.toString();
+
+        return txt;
     }
 }

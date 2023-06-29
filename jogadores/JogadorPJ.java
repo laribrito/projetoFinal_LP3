@@ -10,7 +10,7 @@ public class JogadorPJ extends Jogador {
     private ContaPessoaJuridica conta;
     static int TAMANHO_DOCUMENTO = 14; //cnpj
 
-    static public String geracnpj(){
+    static public String geraCNPJ(){
         String cnpj="";
 
         // gera um cnpj com 14 dígitos
@@ -33,6 +33,23 @@ public class JogadorPJ extends Jogador {
         }
     }
 
+    private String toStringCNPJ() {
+        String cnpjFormatado;
+
+        // Adiciona os pontos, barra e traço de formatação
+        cnpjFormatado = cnpj.substring(0, 2);
+        cnpjFormatado += ".";
+        cnpjFormatado += cnpj.substring(2, 5);
+        cnpjFormatado += ".";
+        cnpjFormatado += cnpj.substring(5, 8);
+        cnpjFormatado += "/";
+        cnpjFormatado += cnpj.substring(8, 12);
+        cnpjFormatado += "-";
+        cnpjFormatado += cnpj.substring(12);
+
+        return cnpjFormatado;
+    }
+
     public JogadorPJ(String nome, Data nasc, String localNasc, ContaPessoaJuridica conta, String cnpj){
         super(nome, nasc, localNasc);
         if(validaConta(conta) && validaCNPJ(cnpj)){
@@ -46,5 +63,16 @@ public class JogadorPJ extends Jogador {
     @Override
     public Conta getConta() {
         return conta;
+    }
+
+    @Override
+    public String toString(){
+        String txt;
+
+        txt = super.toString();
+        txt+= "Seu CNPJ é: " + toStringCNPJ() +"\n";        
+        txt+= conta.toString();
+
+        return txt;
     }
 }
