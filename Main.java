@@ -22,33 +22,37 @@ public class Main {
 
     public static void main(String[] args) {
         Jogador player;
-        if(!DEBUG){
-            intro();
-            instrucoes();
-        }
+        intro();
+        instrucoes();
         player = inicio();
         System.out.println(player);
+        System.out.println("Podemos começar?");
+        aperteEnter();
     }
 
     public static void intro(){
-        limpaTela();
-        System.out.println("\tOlá! Este é o Jogo da Vida!!!");
-        System.out.println("\tO carrosel nunca para de girar. Escolha com cuidado ");
-        System.out.println("\te faça história!");
-        System.out.println("\n\n\n");
-        aguarde(7);
-        limpaTela();
+        if(!DEBUG){
+            limpaTela();
+            System.out.println("\tOlá! Este é o Jogo da Vida!!!");
+            System.out.println("\tO carrosel nunca para de girar. Escolha com cuidado ");
+            System.out.println("\te faça história!");
+            System.out.println("\n\n\n");
+            aguarde(7);
+            limpaTela();
+        }
     }
 
     public static void instrucoes(){
-        limpaTela();
-        System.out.println("\tAqui você escolherá seu ponto de partida");
-        System.out.println("\tpara trilhar como bem entender, seja como");
-        System.out.println("\tuma persona ou uma empresa. Que a sorte");
-        System.out.println("\testeja sempre ao seu favor!");
-        System.out.println("\n\n\n");
-        aguarde(11);
-        limpaTela();
+        if(!DEBUG){
+            limpaTela();
+            System.out.println("\tAqui você escolherá seu ponto de partida");
+            System.out.println("\tpara trilhar como bem entender, seja como");
+            System.out.println("\tuma persona ou uma empresa. Que a sorte");
+            System.out.println("\testeja sempre ao seu favor!");
+            System.out.println("\n\n\n");
+            aguarde(11);
+            limpaTela();
+        }
     }
 
     public static int getOpc(int max){
@@ -63,6 +67,11 @@ public class Main {
             } else break;
         }
         return opc;
+    }
+
+    public static void aperteEnter(){
+        System.out.println("\nPressione [ENTER] para continuar ");
+        AuxLib.input.nextLine();
     }
 
     public static void erroLeitura(){
@@ -192,9 +201,11 @@ public class Main {
             senhaConta = Conta.geraSenha(); // string
 
             //exibe a senha para a pessoa decorar
+            telaEspera1();
             System.out.println("A sua senha é muito importante. Geramos essa para você:");
             System.out.println("                       ****");
             aguarde(2);
+            limpaTela();
             System.out.println("A sua senha é muito importante. Geramos essa para você:");            
             System.out.println("                       "+senhaConta);
             aguarde(1);
@@ -228,16 +239,7 @@ public class Main {
             System.out.println("operação, cadastre uma senha de 4 DÍGITOS NUMÉRICOS:");
             senhaConta = getSenhaConta();
 
-            for(int x=0; x<3;x++){
-                limpaTela();
-                System.out.print("Pois bem, só mais uns instantes.");
-                aguarde(1);
-                System.out.print(".");
-                aguarde(1);
-                System.out.print(".");
-                aguarde(1);
-            }
-            limpaTela();
+            telaEspera1();
         }
 
         //criação do personagem                    
@@ -254,6 +256,20 @@ public class Main {
         }        
     }
 
+    public static void telaEspera1(){
+        if(!DEBUG) {
+            for(int x=0; x<3;x++){
+                limpaTela();
+                System.out.print("Pois bem, só mais uns instantes.");
+                aguarde(1);
+                System.out.print(".");
+                aguarde(1);
+                System.out.print(".");
+                aguarde(1);
+            }
+            limpaTela();
+        }
+    }
 
     public static String estiloTXT1(String txt){
         return BG_RED+BOLD + txt + CLEAR;
