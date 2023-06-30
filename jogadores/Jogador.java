@@ -17,17 +17,17 @@ abstract public class Jogador{
     // métodos de validação -----------------------------------------------------
 
     /** STATIC - Verifica se a data enviada é válida e retorna um booleano */
-    static private boolean validaNascimento(Data nascimento){
+    static public boolean validaNascimento(Data nascimento){
         return nascimento.getValido();
     }
 
     /** STATIC - Verifica se o local de nascimento não é uma string vazia e retorna um booleano */
-    static private boolean validaLocalNascimento(String local){
+    static public boolean validaLocalNascimento(String local){
         return !local.isBlank();
     }
 
     /** STATIC - Verifica se o local de nascimento não é uma string vazia e retorna um booleano */
-    static private boolean validaNome(String nome){
+    static public boolean validaNome(String nome){
         return !nome.isBlank();
     }
 

@@ -28,7 +28,7 @@ public abstract class Conta {
     }
 
     /** STATIC - Verifica se a string informada é composta apenas por números e tem o tamanho de uma senha. Retorna um booleano */
-    private static boolean ehSenhaValida(String inputSenha){
+    public static boolean ehSenhaValida(String inputSenha){
         return AuxLib.ehApenasNumero(inputSenha) && inputSenha.length()==Conta.TAMANHO_SENHA;
     }
 

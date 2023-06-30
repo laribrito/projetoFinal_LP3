@@ -21,7 +21,7 @@ public class JogadorPF extends Jogador {
         return cpf;
     }
 
-    private boolean validaCPF(String cpf){
+    public static boolean validaCPF(String cpf){
         if(cpf.length()!=TAMANHO_DOCUMENTO || !AuxLib.ehApenasNumero(cpf)){
             System.out.println("CPF não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
             return false;

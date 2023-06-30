@@ -24,7 +24,7 @@ public class JogadorPJ extends Jogador {
         return cnpj;
     }
 
-    private boolean validaCNPJ(String cnpj){
+    public static boolean validaCNPJ(String cnpj){
         if(cnpj.length()!=TAMANHO_DOCUMENTO || !AuxLib.ehApenasNumero(cnpj)){
             System.out.println("CNPJ não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
             return false;
@@ -51,7 +51,7 @@ public class JogadorPJ extends Jogador {
     }
 
     public JogadorPJ(String nome, Data nasc, String localNasc, ContaPessoaJuridica conta, String cnpj){
-        super(nome, nasc, localNasc);
+        super(nome+" Co.", nasc, localNasc);
         if(validaConta(conta) && validaCNPJ(cnpj)){
             this.conta = conta;
             this.cnpj = cnpj;
