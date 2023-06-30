@@ -8,6 +8,7 @@ import jogadores.JogadorPF;
 import jogadores.JogadorPJ;
 
 public class Main {
+    public static boolean DEBUG = true;
     public static final int PF = 1;
     public static final int PJ = 2;
 
@@ -21,8 +22,10 @@ public class Main {
 
     public static void main(String[] args) {
         Jogador player;
-        // intro();
-        // instrucoes();
+        if(!DEBUG){
+            intro();
+            instrucoes();
+        }
         player = inicio();
         System.out.println(player);
     }
@@ -41,12 +44,13 @@ public class Main {
         limpaTela();
         System.out.println("\tAqui você escolherá seu ponto de partida");
         System.out.println("\tpara trilhar como bem entender, seja como");
-        System.out.println("\tuma persona ou uma empresa. E que a sorte");
+        System.out.println("\tuma persona ou uma empresa. Que a sorte");
         System.out.println("\testeja sempre ao seu favor!");
         System.out.println("\n\n\n");
         aguarde(11);
         limpaTela();
     }
+
     public static int getOpc(int max){
         int opc;
         while(true){
@@ -186,10 +190,17 @@ public class Main {
             //pessoa ou empresa, conta e tipo jogador
             opcTipoPessoa = AuxLib.novoInteiro_nl(2); //int
             senhaConta = Conta.geraSenha(); // string
-            documento = JogadorPF.geraCPF();
-            documento = JogadorPJ.geraCNPJ();
+
+            //exibe a senha para a pessoa decorar
+            System.out.println("A sua senha é muito importante. Geramos essa para você:");
+            System.out.println("                       ****");
+            aguarde(2);
+            System.out.println("A sua senha é muito importante. Geramos essa para você:");            
+            System.out.println("                       "+senhaConta);
+            aguarde(1);
+            
+            documento = (opcTipoPessoa==PF)? JogadorPF.geraCPF(): JogadorPJ.geraCNPJ();
         } else {
-            limpaTela();
             //nome
             System.out.print("Seu nome: ");
             nome = getNome();
@@ -231,6 +242,7 @@ public class Main {
 
         //criação do personagem                    
         //pessoa ou empresa, conta e tipo jogador
+        limpaTela();
         if(opcTipoPessoa==PF){
             ContaPessoaFisica conta = new ContaPessoaFisica(senhaConta);
             JogadorPF jogador = new JogadorPF(nome, nasc, localNasc, conta, documento);
