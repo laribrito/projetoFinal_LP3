@@ -20,27 +20,37 @@ public class Main {
 
     public static void main(String[] args) {
         Jogador player;
+        String dnv;
+
         intro();
         instrucoes();
-        player = inicio();
-        System.out.println(player);
-        
-        System.out.println(AuxLib.estiloTXT5("Podemos começar?"));
-        AuxLib.aperteEnter();
-        if(player instanceof JogadorPF){
-            HPessoaFisica_I vida = new HPessoaFisica_I((JogadorPF) player);
-            vida.play();
-        } else {
-            HPessoaJuridica_I vida = new HPessoaJuridica_I((JogadorPJ) player);
-            vida.play();
-        }
+        do{
+            player = inicio();
+            System.out.println(player);
+            
+            System.out.println(AuxLib.estiloTXT5("Podemos começar?"));
+            AuxLib.aperteEnter();
+            if(player instanceof JogadorPF){
+                HPessoaFisica_I vida = new HPessoaFisica_I((JogadorPF) player);
+                vida.play();
+            } else {
+                HPessoaJuridica_I vida = new HPessoaJuridica_I((JogadorPJ) player);
+                vida.play();
+            }
+            AuxLib.limpaTela();
+            System.out.println(AuxLib.estiloTXT2("Assim você finalizou a sua jornada:")+"\n");
+            System.out.println(player);
+            AuxLib.aguarde(3);
+            System.out.println("Sua biografia está pronta. Quando quiser pode abri-la");
+            AuxLib.aperteEnter();
+            player.exibirBiografia();
+
+            System.out.println("\nDeseja jogar de novo? (S/n)");
+            dnv = AuxLib.input.nextLine();
+        }while(dnv.toLowerCase().equals("s"));
+
         AuxLib.limpaTela();
-        System.out.println(AuxLib.estiloTXT2("Assim você finalizou a sua jornada:")+"\n");
-        System.out.println(player);
-        AuxLib.aguarde(3);
-        System.out.println("Sua biografia está pronta. Quando quiser pode abri-la");
-        AuxLib.aperteEnter();
-        player.exibirBiografia();
+        System.out.println("\t"+AuxLib.estiloTXT2("Bye Bye!")+"\n\n\n");
     }
 
     public static void intro(){
@@ -170,7 +180,6 @@ public class Main {
 
             //pessoa ou empresa, conta e tipo jogador
             opcTipoPessoa = (int) AuxLib.novoInteiro_nl(2); //int
-            opcTipoPessoa = 1;
             senhaConta = Conta.geraSenha(); // string
 
             //exibe a senha para a pessoa decorar

@@ -129,6 +129,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             System.out.println("PARABÉNS! Você se destacou tanto no esporte que participou de vários");
             System.out.println("campeonatos. "+ AuxLib.estiloTXT5("Ganhou") +" ao todo R$ "+ AuxLib.formatarFloat(premios));
             AuxLib.aguarde(4);
+            player.depositar(premios);
 
             //bio
             return "Já na adolescência começou a praticar "+ esporte + " por causa da escola, mas tomou gosto e chegou a participar de campeonatos, ganhando até alguns prêmios. ";

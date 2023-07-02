@@ -63,7 +63,6 @@ public abstract class Conta {
             this.senha = senha;
             numeroConta = numero_livre++;
             saldo = AuxLib.novoInteiro_p(10, 8, 1000000, 2);
-            saldo = 100000000;
         } else {
             System.out.println("A senha não é válida! Digite uma senha de tamanho "+ TAMANHO_SENHA +" somente com números");
         }
