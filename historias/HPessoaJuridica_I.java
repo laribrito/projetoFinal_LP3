@@ -166,7 +166,7 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
             System.out.println(AuxLib.estiloTXT2("\nEscolha o seu destino final:"));
 
             //informações
-            String[] opcs = opcsFimDeJogo, auxOpcs, auxPreco, strOpcs = new String[opcs.length];
+            String[] opcs = opcsFimDeJogo, auxOpcs, strOpcs = new String[opcs.length];
             float[] valorOpcs = new float[opcs.length];
 
             //trata os dados do menu
@@ -180,8 +180,7 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
                     //retira o espaço inicial
                 auxOpcs[1]= auxOpcs[1].trim();
                     //faz um outro split e fica com a segunda parte, onde está o valor
-                auxPreco = auxOpcs[1].split("\\s+");
-                auxOpcs[1] = auxPreco[1];
+                auxOpcs[1] = auxOpcs[1].split("\\s+") [1];
                     //transforma para float
                 valorOpcs[x] = Float.parseFloat(auxOpcs[1]);
             }
