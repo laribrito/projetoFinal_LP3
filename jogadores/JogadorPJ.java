@@ -63,10 +63,6 @@ public class JogadorPJ extends Jogador {
         return conta.getLimiteCredito();
     }
 
-    public float getLimiteDisponivel(){
-        return conta.getLimiteDisponivel();
-    }
-
     @Override
     public float getSaldo() {
         return conta.getSaldo();

@@ -28,7 +28,7 @@ public abstract class AuxLib {
 
     /** STATIC - Retorna um número entre min e o valor absoluto de max como long */
     static public long novoInteiro(long min, long max){
-        return (long)(gerador.nextDouble() * max)+min;
+        return (long)(gerador.nextDouble() * max-min)+min;
     }
 
     /** STATIC - Retorna um número entre 0 e um limite, personalizado com probabilidade 
