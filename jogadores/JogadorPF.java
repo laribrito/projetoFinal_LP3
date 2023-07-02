@@ -8,6 +8,9 @@ public class JogadorPF extends Jogador {
     private String cpf;
     private ContaPessoaFisica conta;
     static int TAMANHO_DOCUMENTO = 11; //cpf
+    private String esporteEscolhido;
+    private String formacaoTecnica;
+    private String formacaoSuperior;
 
     static public String geraCPF(){
         String cpf="";
@@ -54,6 +57,34 @@ public class JogadorPF extends Jogador {
         }
     }
 
+    public void setEsporteEscolhido(String esporteEscolhido) {
+        this.esporteEscolhido = esporteEscolhido;
+    }
+
+    public void setFormacaoTecnica(String formacaoTecnica) {
+        this.formacaoTecnica = formacaoTecnica;
+    }
+
+    public void setFormacaoSuperior(String formacaoSuperior) {
+        this.formacaoSuperior = formacaoSuperior;
+    }
+
+    public String getEsporteEscolhido() {
+        return esporteEscolhido;
+    }
+
+    public String getFormacaoTecnica() {
+        return formacaoTecnica;
+    }
+
+    public String getFormacaoSuperior() {
+        return formacaoSuperior;
+    }
+
+    public void printInfoConta(){
+        System.out.println(conta);
+    }
+
     @Override
     public float getSaldo() {
         return conta.getSaldo();
@@ -74,7 +105,7 @@ public class JogadorPF extends Jogador {
         String txt;
 
         txt = super.toString();
-        txt+= "Seu cpf é: " + toStringCPF() +"\n";        
+        txt+= "Seu CPF é: " + toStringCPF() +"\n";        
         txt+= conta.toString();
 
         return txt;

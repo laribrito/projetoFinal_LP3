@@ -7,12 +7,12 @@ import contas.Conta;
 
 public abstract class AuxLib {
     static public Scanner input  = new Scanner(System.in);
-    public static final String BG_RED = "\u001B[41m";
-    public static final String BG_GREEN = "\u001B[42m";
-    public static final String BOLD = "\u001B[1m";
-    public static final String ITALIC = "\u001B[3m";
-    public static final String CLEAR = "\u001B[0m";
-    public static final String UNDERLINE = "\u001B[4m";
+    private static final String BG_RED = "\u001B[41m";
+    private static final String BG_GREEN = "\u001B[42m";
+    private static final String BOLD = "\u001B[1m";
+    private static final String ITALIC = "\u001B[3m";
+    private static final String CLEAR = "\u001B[0m";
+    private static final String UNDERLINE = "\u001B[4m";
 
     static private Random gerador = new Random();
 
@@ -89,7 +89,7 @@ public abstract class AuxLib {
     }
 
     public static String estiloTXT5(String txt){
-        return BG_GREEN+ txt + CLEAR;
+        return BG_GREEN+BOLD+ txt + CLEAR;
     }
 
     public static String estiloTXT6(String txt){
@@ -128,7 +128,7 @@ public abstract class AuxLib {
     }
 
     public static void aperteEnter(){
-        System.out.println("\nPressione "+ AuxLib.estiloTXT3("[ENTER]") +" para continuar ");
+        System.out.println("\nPressione "+ AuxLib.estiloTXT4("[ENTER]") +" para continuar ");
         AuxLib.input.nextLine();
     }
 

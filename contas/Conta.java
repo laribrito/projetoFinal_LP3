@@ -34,7 +34,7 @@ public abstract class Conta {
 
     /** PROTECTED - Recebe um valor float e verifica se existe saldo suficiente para sacar esse valor e exibe uma mensagem de erro, além de retorna um booleano */
     protected boolean podeSacar(float x){
-        if(valorPositivo(x) && x > saldo){
+        if(valorPositivo(x) && x >= saldo){
             System.out.println("Saldo insuficiente");
             return false;
         }

@@ -4,10 +4,7 @@ import add.Data;
 import contas.Conta;
 import add.AuxLib;
 
-abstract public class Jogador{
-    //atributos de classe
-    static private int QTD_OPC_MAX=4;
-    
+abstract public class Jogador{    
     //atributos de instância
     private String nome;
     private Data dataNasc;
@@ -30,11 +27,6 @@ abstract public class Jogador{
     /** STATIC - Verifica se o local de nascimento não é uma string vazia e retorna um booleano */
     static public boolean validaNome(String nome){
         return !nome.isBlank();
-    }
-
-    /** STATIC - Verifica se a opção escolhida é um número entre o range de 1 até a quantidade máxima de opções que o jogador terá */
-    static private boolean validaOpc(int opc){
-        return (opc<=QTD_OPC_MAX && opc >0);
     }
 
     /** Verifica se o a conta é válida pelo seu número. Se o número da conta for maior que 1000
@@ -60,20 +52,10 @@ abstract public class Jogador{
 
     // Ações públicas -------------------------------------------------------------------------
 
-    /** Retorna a escolha do jogador. Se o número escolhido for válido, retorna o número, senão retorna 0 */
-    public int escolheUmaAcao(){
-        int opc;
-        System.out.println(" > ");
-        opc = AuxLib.input.nextInt();
-
-        if(validaOpc(opc)) return opc;
-        else return 0;
-    }
-
     /** Exibe a biografia do personagem */
     public void exibirBiografia(){
         AuxLib.limpaTela();
-        System.out.println("Depois de altos e baixos, felicidades e tristezas, essa é a sua história:\n");
+        System.out.println(AuxLib.estiloTXT4("Depois de altos e baixos, felicidades e tristezas, essa é a sua história:")+"\n");
         String bio = AuxLib.formatText(biografia, 60);
         System.out.println(bio);
     }
@@ -100,6 +82,10 @@ abstract public class Jogador{
 
     public String getNome() {
         return nome;
+    }
+
+    public String getDataNascStr() {
+        return dataNasc.toString();
     }
 
     @Override

@@ -25,15 +25,21 @@ public class Main {
         player = inicio();
         System.out.println(player);
         
-        System.out.println(AuxLib.estiloTXT1("Podemos começar?"));
+        System.out.println(AuxLib.estiloTXT5("Podemos começar?"));
         AuxLib.aperteEnter();
         if(player instanceof JogadorPF){
-            HPessoaFisica_I vida = new HPessoaFisica_I(player);
+            HPessoaFisica_I vida = new HPessoaFisica_I((JogadorPF) player);
             vida.play();
         } else {
-            HPessoaJuridica_I vida = new HPessoaJuridica_I( (JogadorPJ) player);
+            HPessoaJuridica_I vida = new HPessoaJuridica_I((JogadorPJ) player);
             vida.play();
         }
+        AuxLib.limpaTela();
+        System.out.println("Assim você finalizou a sua jornada:");
+        System.out.println(player);
+        AuxLib.aguarde(3);
+        System.out.println("Sua biografia está pronta. Quando quiser pode abri-la");
+        AuxLib.aperteEnter();
         player.exibirBiografia();
     }
 
@@ -164,7 +170,6 @@ public class Main {
 
             //pessoa ou empresa, conta e tipo jogador
             opcTipoPessoa = (int) AuxLib.novoInteiro_nl(2); //int
-            opcTipoPessoa = 2;
             senhaConta = Conta.geraSenha(); // string
 
             //exibe a senha para a pessoa decorar

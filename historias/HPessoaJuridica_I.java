@@ -7,19 +7,18 @@ import capitulos.Inovacao;
 import capitulos.FimDeVida;
 
 public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
-    int pontosE; //uma pontuação simbólica da empresa e seu impacto no mundo
-    JogadorPJ player;
+    private JogadorPJ player;
+
     protected boolean ehJogadorCorreto(Jogador p){
         return p instanceof JogadorPJ;
     }
 
     public HPessoaJuridica_I(JogadorPJ p){
-        super(p);
+        super();
         if(ehJogadorCorreto(p)){
-            pontosE = 0;
             hValida = true;
             player = p;
-            System.out.println("Essa é a sua história!");
+            msgStart();
         } else {
             erroCriacaoHistoria();
         }
