@@ -85,7 +85,6 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
         float qtdDinheiro = AuxLib.novoInteiro(1000, limiteDinheiro)/100.0f;
         strDinheiro = AuxLib.formatarFloat(qtdDinheiro);
 
-        ganhouDinheiro = 7;
         if(ganhouDinheiro>5){
             //se ganhou dinheiro
             System.out.println("Sua empresa lhe rendeu um "+ AuxLib.estiloTXT5("lucro") +" inicial de "+AuxLib.estiloTXT3("R$ "+strDinheiro));
@@ -107,24 +106,24 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
             int tentativas=0, maxTent = 3;
             boolean conseguiuSacar = false;
 
-            while(!conseguiuSacar || player.estaVivo()){
+            while(!conseguiuSacar && player.estaVivo()){
                 senha = AuxLib.getSenhaConta();
                 
                 conseguiuSacar = player.sacar(qtdDinheiro, senha);
                 if(!conseguiuSacar){
                     System.out.println("\n"+AuxLib.estiloTXT1("NÃO PODE DEIXAR DE PAGAR!")+" Tentativa "+ ++tentativas + ". Você tem até");
                     System.out.println(AuxLib.estiloTXT3(maxTent + " chances")+" para pagar o dinheiro antes que "+ AuxLib.estiloTXT1("os agiotas te matem") +".");
-                    System.out.println(AuxLib.estiloTXT3("Tente novamente:"));
+                    System.out.println(AuxLib.estiloTXT4("Tente novamente:"));
                 }
 
                 if(tentativas==maxTent){
                     AuxLib.limpaTela();
                     System.out.println("Você "+ AuxLib.estiloTXT1("morreu") +" :(");
                     player.morreu();
+                    AuxLib.aguarde(4);
                     bioAux = "E isso acabou lhe custando a vida. Talvez não tenha sido o melhor caminho a ser seguido. ";
                 }
             }
-            AuxLib.aguarde(4);
             return declinio()+bioAux;
         }
     }
@@ -176,10 +175,10 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
                 auxOpcs = opcs[x].split("---+");
 
                 //armazena nos devidos vetores
-                strOpcs[x]=auxOpcs[0].toLowerCase();
+                strOpcs[x]=auxOpcs[0].toLowerCase().trim();
 
                     //retira o espaço inicial
-                auxOpcs[1]= auxOpcs[1].substring(1, auxOpcs[1].length());
+                auxOpcs[1]= auxOpcs[1].trim();
                     //faz um outro split e fica com a segunda parte, onde está o valor
                 auxPreco = auxOpcs[1].split("\\s+");
                 auxOpcs[1] = auxPreco[1];
@@ -209,7 +208,7 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
                     conseguiuPagar = true;
                 }
 
-                bio = "O que se sabe sobre " + player.getNome()+ " atualmente é que " + fimEscolhido.toLowerCase();
+                bio = "O que se sabe sobre " + player.getNome()+ " atualmente é que " + fimEscolhido.toLowerCase()+ ".";
             }
 
             return bio;

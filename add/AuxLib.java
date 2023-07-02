@@ -114,11 +114,10 @@ public abstract class AuxLib {
 
     public static int getOpc(int max){
         int opc;
-        String txt;
         while(true){
             System.out.print("> ");
-            txt = AuxLib.input.nextLine();
-            opc = Integer.parseInt(txt);
+            opc = AuxLib.input.nextInt();
+            AuxLib.input.nextLine();
 
             if (!ehOpcValido(opc, max)){
                 erroLeitura();

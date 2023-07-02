@@ -170,7 +170,6 @@ public class Main {
 
             //pessoa ou empresa, conta e tipo jogador
             opcTipoPessoa = (int) AuxLib.novoInteiro_nl(2); //int
-            opcTipoPessoa = 2;
             senhaConta = Conta.geraSenha(); // string
 
             //exibe a senha para a pessoa decorar
