@@ -2,7 +2,6 @@ package jogadores;
 
 import add.Data;
 import add.AuxLib;
-import contas.Conta;
 import contas.ContaPessoaJuridica;
 
 public class JogadorPJ extends Jogador {
@@ -26,7 +25,7 @@ public class JogadorPJ extends Jogador {
 
     public static boolean validaCNPJ(String cnpj){
         if(cnpj.length()!=TAMANHO_DOCUMENTO || !AuxLib.ehApenasNumero(cnpj)){
-            System.out.println("CNPJ não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
+            System.out.println("\nCNPJ não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
             return false;
         } else {
             return true;
@@ -60,9 +59,27 @@ public class JogadorPJ extends Jogador {
         }
     }
 
+    public float getLimiteCredito() {
+        return conta.getLimiteCredito();
+    }
+
+    public float getLimiteDisponivel(){
+        return conta.
+    }
+
     @Override
-    public Conta getConta() {
-        return conta;
+    public float getSaldo() {
+        return conta.getSaldo();
+    }
+
+    @Override
+    public boolean sacar(float valor, String senha) {
+        return conta.sacar(valor, senha);
+    }
+
+    @Override
+    public boolean depositar(float valor) {
+        return conta.depositar(valor);
     }
 
     @Override

@@ -43,13 +43,13 @@ public abstract class Conta {
 
     /** Verifica se a string informada corresponde à senha cadastrada pelo usuário. Retorna um booleano */
     private boolean ehSenhaCorreta(String inputSenha){
-        return inputSenha == this.senha;
+        return inputSenha.equals(senha);
     }
 
     /** Verifica se a string informada corresponde à senha do usuário e exibe uma mensagem de erro se não for a correta. Retorna um booleano */
     protected boolean checaSenha(String inputSenha){
-        if(!ehSenhaCorreta(senha)) {
-            System.out.println("A senha não está correta");
+        if(!ehSenhaCorreta(inputSenha)) {
+            System.out.println("\nA senha não está correta");
             return false;
         }
         return true;
@@ -102,6 +102,10 @@ public abstract class Conta {
 
     public int getNumeroConta() {
         return numeroConta;
+    }
+
+    public float getSaldo() {
+        return saldo;
     }
 
     @Override

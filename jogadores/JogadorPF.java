@@ -2,7 +2,6 @@ package jogadores;
 
 import add.Data;
 import add.AuxLib;
-import contas.Conta;
 import contas.ContaPessoaFisica;
 
 public class JogadorPF extends Jogador {
@@ -23,7 +22,7 @@ public class JogadorPF extends Jogador {
 
     public static boolean validaCPF(String cpf){
         if(cpf.length()!=TAMANHO_DOCUMENTO || !AuxLib.ehApenasNumero(cpf)){
-            System.out.println("CPF não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
+            System.out.println("\nCPF não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
             return false;
         } else {
             return true;
@@ -56,8 +55,18 @@ public class JogadorPF extends Jogador {
     }
 
     @Override
-    public Conta getConta() {
-        return conta;
+    public float getSaldo() {
+        return conta.getSaldo();
+    }
+
+    @Override
+    public boolean sacar(float valor, String senha) {
+        return conta.sacar(valor, senha);
+    }
+
+    @Override
+    public boolean depositar(float valor) {
+        return conta.depositar(valor);
     }
 
     @Override

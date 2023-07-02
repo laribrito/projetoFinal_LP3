@@ -22,7 +22,7 @@ public class ContaPessoaJuridica extends Conta {
             System.out.println("Deseja utilizar seu limite de crédito? (S/n) ");
             opc = AuxLib.input.next();
 
-            if(opc.toLowerCase() == "s"){
+            if(opc.toLowerCase().equals("s")){
                 return true;
             }
         }
@@ -37,6 +37,14 @@ public class ContaPessoaJuridica extends Conta {
         super(senha);
         limiteCredito = random.nextInt(9900) + 1000;
         creditoUtilizado = 0;
+    }
+
+    public float getLimiteCredito() {
+        return limiteCredito;
+    }
+
+    public float getLimiteDisponivel(){
+        return limiteCredito-creditoUtilizado;
     }
 
     @Override

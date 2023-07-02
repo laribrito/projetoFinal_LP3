@@ -13,6 +13,7 @@ abstract public class Jogador{
     private Data dataNasc;
     private String localNasc;
     private String biografia;
+    private boolean estaVivo;
 
     // métodos de validação -----------------------------------------------------
 
@@ -51,6 +52,7 @@ abstract public class Jogador{
             dataNasc = nascimento;
             localNasc = local;
             biografia = "";
+            estaVivo = true;
         } else {
             System.out.println("Não foi possível criar o jogador");
         }
@@ -70,13 +72,31 @@ abstract public class Jogador{
 
     /** Exibe a biografia do personagem */
     public void exibirBiografia(){
+        AuxLib.limpaTela();
         System.out.println("Depois de altos e baixos, felicidades e tristezas, essa é a sua história:\n");
-        System.out.println(biografia);
+        String bio = AuxLib.formatText(biografia, 60);
+        System.out.println(bio);
     }
 
     // Métodos abstratos ------------------------------------------------------------------------------
 
-    abstract public Conta getConta();
+    abstract public float getSaldo();
+
+    abstract public boolean sacar(float valor, String senha);
+
+    abstract public boolean depositar(float valor);
+
+    public void morreu(){
+        estaVivo = false;
+    }
+
+    public boolean estaVivo(){
+        return estaVivo;
+    }
+
+    public void adicionaNaBio(String novaFrase){
+        biografia+=novaFrase;
+    }
 
     public String getNome() {
         return nome;
