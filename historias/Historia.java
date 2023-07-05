@@ -24,7 +24,7 @@ public abstract class Historia {
         AuxLib.aguarde(3);
     }
 
-    protected abstract void play();
+    public abstract void play();
 
     protected abstract boolean ehJogadorCorreto(Jogador p);
 }

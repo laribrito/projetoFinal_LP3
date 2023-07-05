@@ -15,11 +15,13 @@ public class ContaPessoaFisica extends Conta {
     */
     @Override
     protected boolean podeSacar(float x){
-        if (super.podeSacar(x) && saquesRealizados<QTD_SAQUES){
+        boolean consegueSacar = saquesRealizados<QTD_SAQUES;
+        if (super.podeSacar(x) && consegueSacar){
             saquesRealizados++;
             return true;
+        } else if(!consegueSacar){
+            System.out.println("Você já chegou no limite de saques");
         }
-        System.out.println("Você já chegou no limite de saques");
         return false;
     }
 

@@ -38,6 +38,14 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             "Alguma das mil engenharias (UESC) ------- R$   Sanidade",
             "Prefiro não fazer nada ------------------ R$       0.00",
             "Ver saldo da minha conta"
+        },
+        opcsFechamento = {
+            "Viajar pelo mundo --------------------- R$  718493.00",
+            "Passar o usando o Twitter ------------- R$   97693.20",
+            "Ir pro espaço ------------------------- R$ 1123459.75",
+            "Se mudar para o campo ----------------- R$    3459.00",
+            "Viver onde está, de perna pra cima ---- R$       0.00",
+            "Ver saldo da minha conta",
         }
     ;
 
@@ -60,10 +68,11 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
         if(hValida){
             telaPlay("da pessoa física, edição I,");
             //chama os capítulos
-            player.adicionaNaBio(escolherBrinquedoInfantil());
-            player.adicionaNaBio(escolherEsporteEscolar());
-            player.adicionaNaBio(cursoTecnico());
-            player.adicionaNaBio(graduacao());
+            // player.adicionaNaBio(escolherBrinquedoInfantil());
+            // player.adicionaNaBio(escolherEsporteEscolar());
+            // player.adicionaNaBio(cursoTecnico());
+            // player.adicionaNaBio(graduacao());
+            player.adicionaNaBio(fechamento());
         }
     }
 
@@ -128,7 +137,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             premios = AuxLib.novoInteiro(10000, 1234500) / 100.0f;
             System.out.println("PARABÉNS! Você se destacou tanto no esporte que participou de vários");
             System.out.println("campeonatos. "+ AuxLib.estiloTXT5("Ganhou") +" ao todo R$ "+ AuxLib.formatarFloat(premios));
-            AuxLib.aguarde(4);
+            AuxLib.aguarde(8);
             player.depositar(premios);
 
             //bio
@@ -319,54 +328,74 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
     @Override
     public String fechamento(){
         int opc;
-        float precoEscolhido, saldoDisp;
-        boolean fimDaHistoria = false;
+        float precoEscolhido;
+        boolean podePagar = false;
+        String senha, destinoFinal;
+            
+        //informações
+        String[] opcs = opcsFechamento, aux, strOpcs = new String[opcs.length];
+        float[] valorOpcs = new float[opcs.length];
 
-        if(player.estaVivo()){
+        //trata os dados do menu
+        for(int x = 0; x<opcs.length-1; x++){
+            //faz o split
+            aux = opcs[x].split("---+");
+            
+            //armazena nos devidos vetores
+            strOpcs[x]=aux[0].trim().toLowerCase();
+            
+                //retira o espaço externo
+            aux[1]= aux[1].trim();
+                //faz um outro split ("R$  xxxx,xx") = ("xxxx,xx") e fica com a segunda parte, onde está o valor
+            aux[1] = aux[1].split("\\s+")[1];
+                //transforma para float
+            valorOpcs[x] = Float.parseFloat(aux[1]);
+        }
+        
+        //apresentação das opções
+        do{
+            AuxLib.limpaTela();  
             System.out.println(AuxLib.estiloTXT3("Que bom que você chegou até aqui!") +" Já trabalhou");
-            System.out.println("bastante e agora é o momento de você descansar.");
-
-            // player.get
-
+            System.out.println("bastante e agora é o momento de você descansar.\n");
             System.out.println(AuxLib.estiloTXT2("Escolha o destino final da tua vida:"));
-
-            //informações
-            String[] opcs = {
-                "Viagem pelo mundo --------------------- R$  718493,99",
-                "Passar o usando o Twitter ------------- R$   97693,23",
-                "Ir pro espaço ------------------------- R$ 5123459,76",
-                "Se mudar para o campo ----------------- R$    3459,15",
-                "Viver onde está de perna pra cima ----- R$       0,00",
-            };
-            float[] precos = {718493.99f, 97693.23f, 5123459.76f, 3459.15f, 0.0f};
-
-            //separa a parte escrita das opções
-            String[] strOpcs = new String[opcs.length];
-            for (int i = 0; i < opcs.length; i++) {
-                String[] parts = opcs[i].split("---+");
-                strOpcs[i] = parts[0].trim();
-            }
-
-            //pega a opção do usuário
+            //pega a opc do jogador
             AuxLib.exibeOpcs(opcs);
-            while(!fimDaHistoria){
-                opc = AuxLib.getOpc(opcs.length);
-
-                //valida a opção com o preço com o saldo da conta da pessoa
-                precoEscolhido = precos[opc-1];
-                saldoDisp = player.getSaldo();
-                if(precoEscolhido<=saldoDisp){
-                    //pode finalizar a história
-                    fimDaHistoria = true;
-                    return "Como desfecho de vida, ";
-                } else {
-                    //escolha novamente
+            opc = AuxLib.getOpc(opcs.length);
+            
+            //testa a opc escolhida
+            if(opc==opcs.length){
+                //exibe o saldo da conta
+                AuxLib.limpaTela();
+                player.printInfoConta();
+                AuxLib.aperteEnter();
+            } else {
+                //se o jogador não escolheu ver o saldo, pega o valor do que foi escolhido
+                precoEscolhido = valorOpcs[opc-1];
+                
+                if(precoEscolhido==0){
+                    podePagar = true;
+                }else{
+                    //tenta pagar
+                    System.out.print("\nDigite sua senha para poder seguir o seu destino: ");
+                    senha = AuxLib.getSenhaConta();
+                    podePagar = player.sacar(precoEscolhido, senha);
+                }
+                
+                //verifica se pode pagar pelo curso
+                if(podePagar && opc < opcs.length-1){
+                    
+                } else if(!podePagar){
+                    System.out.print("Parece que você "+ AuxLib.estiloTXT1("não conseguiu pagar") +". Tente novamente! \n");
+                    opc = opcs.length;
+                    AuxLib.aperteEnter();
                 }
             }
-            
-            System.out.println("Muito bem! Ótima escolha!");
-            
-        }
-        return "";            
+
+        }while(opc == opcs.length && !podePagar);
+    
+        System.out.println("Que assim seja! "+AuxLib.estiloTXT5("Felicidades")+" pra ti!");
+        AuxLib.aguarde(5);
+        destinoFinal = strOpcs[opc-1];
+        return "Como desfecho de vida, decidiu "+ destinoFinal + ", e assim finalizou sua jornada. ";
     }
 }

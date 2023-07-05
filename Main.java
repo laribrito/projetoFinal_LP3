@@ -5,6 +5,7 @@ import contas.ContaPessoaFisica;
 import contas.ContaPessoaJuridica;
 import historias.HPessoaFisica_I;
 import historias.HPessoaJuridica_I;
+import historias.Historia;
 import jogadores.Jogador;
 import jogadores.JogadorPF;
 import jogadores.JogadorPJ;
@@ -20,6 +21,7 @@ public class Main {
 
     public static void main(String[] args) {
         Jogador player;
+        Historia vida;
         String dnv;
 
         intro();
@@ -31,12 +33,11 @@ public class Main {
             System.out.println(AuxLib.estiloTXT5("Podemos começar?"));
             AuxLib.aperteEnter();
             if(player instanceof JogadorPF){
-                HPessoaFisica_I vida = new HPessoaFisica_I((JogadorPF) player);
-                vida.play();
+                vida  = new HPessoaFisica_I((JogadorPF) player);
             } else {
-                HPessoaJuridica_I vida = new HPessoaJuridica_I((JogadorPJ) player);
-                vida.play();
+                vida = new HPessoaJuridica_I((JogadorPJ) player);
             }
+            vida.play();
             AuxLib.limpaTela();
             System.out.println(AuxLib.estiloTXT2("Assim você finalizou a sua jornada:")+"\n");
             System.out.println(player);
