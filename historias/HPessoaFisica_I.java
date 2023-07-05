@@ -40,11 +40,11 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             "Ver saldo da minha conta"
         },
         opcsFechamento = {
-            "Viajar pelo mundo --------------------- R$  718493.00",
-            "Passar o usando o Twitter ------------- R$   97693.20",
-            "Ir pro espaço ------------------------- R$ 1123459.75",
-            "Se mudar para o campo ----------------- R$    3459.00",
-            "Viver onde está, de perna pra cima ---- R$       0.00",
+            "Viajar pelo mundo ----------------------- R$  718493.00",
+            "Passar o usando o Twitter --------------- R$   97693.20",
+            "Ir pro espaço --------------------------- R$ 1123459.75",
+            "Se mudar para o campo ------------------- R$    3459.00",
+            "Viver onde estava, de perna pra cima ---- R$       0.00",
             "Ver saldo da minha conta",
         }
     ;

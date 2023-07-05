@@ -11,7 +11,7 @@ import jogadores.JogadorPF;
 import jogadores.JogadorPJ;
 
 public class Main {
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     public static final int PF = 1;
     public static final int PJ = 2;
 
@@ -56,6 +56,10 @@ public class Main {
 
     public static void intro(){
         if(!DEBUG){
+            AuxLib.limpaTela();
+            System.out.println("\t"+ AuxLib.estiloTXT4("Jogo da Vida - Projeto LP3"));
+            System.out.println("\t"+ AuxLib.estiloTXT4(" Criado por Larissa Brito"));
+            AuxLib.aguarde(4);
             AuxLib.limpaTela();
             System.out.println("\t"+ AuxLib.estiloTXT4("Olá! Este \u00E9 o Jogo da Vida!!!"));
             System.out.println("\t"+ AuxLib.estiloTXT3("O carrosel nunca para de girar") +". Escolha com cuidado ");
