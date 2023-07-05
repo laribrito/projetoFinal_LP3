@@ -59,6 +59,7 @@ public class Main {
             AuxLib.limpaTela();
             System.out.println("\t"+ AuxLib.estiloTXT4("Jogo da Vida - Projeto LP3"));
             System.out.println("\t"+ AuxLib.estiloTXT4(" Criado por Larissa Brito"));
+            System.out.println("\n\n\n");
             AuxLib.aguarde(4);
             AuxLib.limpaTela();
             System.out.println("\t"+ AuxLib.estiloTXT4("Olá! Este \u00E9 o Jogo da Vida!!!"));
