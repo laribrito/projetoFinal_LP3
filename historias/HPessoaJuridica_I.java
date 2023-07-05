@@ -25,9 +25,13 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
         }
     ;
 
+    // Método de validação --------------------------------------------------------
+
     protected boolean ehJogadorCorreto(Jogador p){
         return p instanceof JogadorPJ;
     }
+    
+    // Construtor --------------------------------------------------------------------
 
     public HPessoaJuridica_I(JogadorPJ p){
         super();
@@ -39,6 +43,8 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
             erroCriacaoHistoria();
         }
     }
+    
+    // Métodos públicos -----------------------------------------------------------------
 
     public void play(){
         if(hValida){
@@ -78,7 +84,7 @@ public class HPessoaJuridica_I extends Historia implements Inovacao, FimDeVida {
         String bioAux="", strDinheiro;
 
         //chance de ganhar ou perder dinheiro
-        long ganhouDinheiro = AuxLib.novoInteiro_p(5, 3, 10, 8);
+        long ganhouDinheiro = AuxLib.novoInteiro(5, 3, 10, 8);
 
         //pode até dobrar o que tem ou chegar a perder tudo e ficar com dívida
         long limiteDinheiro = (long) (player.getSaldo() + player.getLimiteCredito()) * 100;

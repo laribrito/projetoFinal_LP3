@@ -5,10 +5,16 @@ import add.AuxLib;
 import contas.ContaPessoaJuridica;
 
 public class JogadorPJ extends Jogador {
+    //variável de classe
+    static int TAMANHO_DOCUMENTO = 14; //cnpj
+    //variável de instância
     private String cnpj;
     private ContaPessoaJuridica conta;
-    static int TAMANHO_DOCUMENTO = 14; //cnpj
 
+
+    // Métodos de validação ------------------------------------------------------------------
+
+    /** STATIC - Retorna um cnpj válido no formato String */
     static public String geraCNPJ(){
         String cnpj="";
 
@@ -23,6 +29,7 @@ public class JogadorPJ extends Jogador {
         return cnpj;
     }
 
+    /** Verifica se a string informada contem um cnpj válido e retorna um booleano */
     public static boolean validaCNPJ(String cnpj){
         if(cnpj.length()!=TAMANHO_DOCUMENTO || !AuxLib.ehApenasNumero(cnpj)){
             System.out.println("\nCNPJ não é válido. Precisa ter "+ TAMANHO_DOCUMENTO +" números");
@@ -32,6 +39,7 @@ public class JogadorPJ extends Jogador {
         }
     }
 
+    /** Retorna uma string com o cnpj da instância formatada com pontos, traço e barra */
     private String toStringCNPJ() {
         String cnpjFormatado;
 
@@ -49,8 +57,10 @@ public class JogadorPJ extends Jogador {
         return cnpjFormatado;
     }
 
+    // Construtor ------------------------------------------------------------------
+
     public JogadorPJ(String nome, Data nasc, String localNasc, ContaPessoaJuridica conta, String cnpj){
-        super(nome+" Co.", nasc, localNasc);
+        super(nome+" Company", nasc, localNasc);
         if(validaConta(conta) && validaCNPJ(cnpj)){
             this.conta = conta;
             this.cnpj = cnpj;
@@ -59,11 +69,12 @@ public class JogadorPJ extends Jogador {
         }
     }
 
+    // Métodos públicos ------------------------------------------------------------------
+
     public float getLimiteCredito() {
         return conta.getLimiteCredito();
     }
 
-    @Override
     public float getSaldo() {
         return conta.getSaldo();
     }

@@ -1,11 +1,9 @@
 package contas;
-import java.util.Random;
 import add.AuxLib;
 
 public class ContaPessoaJuridica extends Conta {
-    static Random random = new Random();
-    int limiteCredito;
-    int creditoUtilizado;
+    private int limiteCredito;
+    private int creditoUtilizado;
 
     // métodos de validação -----------------------------------------------------
 
@@ -35,7 +33,7 @@ public class ContaPessoaJuridica extends Conta {
         com a reputação da empresa, esse valor é aleatório, de mínimo R$ 1000,00 */
     public ContaPessoaJuridica(String senha){
         super(senha);
-        limiteCredito = random.nextInt(9900) + 1000;
+        limiteCredito = (int) AuxLib.novoInteiro_nl(9900) + 1000;
         creditoUtilizado = 0;
     }
 
@@ -51,13 +49,11 @@ public class ContaPessoaJuridica extends Conta {
     public boolean sacar(float valor, String senha){
         if(checaSenha(senha) && podeSacar(valor)){
             this.saldo -= valor;
-
             //se o saldo ficou negativo precisa atualiza o crédito utilizado
             if(saldo<0){
                 creditoUtilizado-=saldo;
                 saldo = 0;
             }
-
             return true;
         }
         return false;

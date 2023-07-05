@@ -5,7 +5,7 @@ public class ContaPessoaFisica extends Conta {
     static final int QTD_SAQUES = 4;
 
     //atributos de instância
-    int saquesRealizados;
+    private int saquesRealizados;
     
     // métodos de validação -----------------------------------------------------
     

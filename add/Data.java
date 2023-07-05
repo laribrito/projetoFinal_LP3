@@ -1,12 +1,20 @@
 package add;
 
-import java.util.Calendar;
-
 public class Data{
 	private int dia, mes, ano;
 	private boolean valido=false;
 	private final String[] nomeMeses = {"Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}; 
-
+	
+	//Método de validação -------------------------------------------------------------------------------------
+	private boolean verificarData(int dd, int mm, int aa){
+		boolean valido = true;
+		if(dd<=0 || dd>31) valido=false;
+		if(mm<=0 || mm>12) valido=false;
+		this.valido=valido;
+		return valido;
+	}	
+	
+	// Construtor --------------------------------------------------------------
 	public Data(int d, int m, int a){
 		if(verificarData(d, m, a)){
 			dia = d;
@@ -17,26 +25,7 @@ public class Data{
         }
 	}
 
-	public Data(){
-		this(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-	}
-
-	public Data(int dia){
-		this(dia, Calendar.getInstance().get(Calendar.MONTH)+1);
-	}
-
-	public Data(int dia, int mes){
-		this(dia, mes, Calendar.getInstance().get(Calendar.YEAR));
-	}
-
-	private boolean verificarData(int dd, int mm, int aa){
-		boolean valido = true;
-		if(dd<=0 || dd>31) valido=false;
-		if(mm<=0 || mm>12) valido=false;
-		this.valido=valido;
-		return valido;
-	}	
-
+	//Métodos públicos ----------------------------------------------------------------
 	public String toString(){
         String texto;
 		if(!valido){

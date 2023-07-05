@@ -49,9 +49,13 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
         }
     ;
 
+    // Método de validação --------------------------------------------------------
+
     protected boolean ehJogadorCorreto(Jogador p){
         return p instanceof JogadorPF;
     }
+
+    // Construtor --------------------------------------------------------------------
     
     public HPessoaFisica_I(JogadorPF p){
         super();
@@ -64,14 +68,16 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
         }
     }
 
+    // Métodos públicos -----------------------------------------------------------------
+
     public void play(){
         if(hValida){
             telaPlay("da pessoa física, edição I,");
             //chama os capítulos
-            // player.adicionaNaBio(escolherBrinquedoInfantil());
-            // player.adicionaNaBio(escolherEsporteEscolar());
-            // player.adicionaNaBio(cursoTecnico());
-            // player.adicionaNaBio(graduacao());
+            player.adicionaNaBio(escolherBrinquedoInfantil());
+            player.adicionaNaBio(escolherEsporteEscolar());
+            player.adicionaNaBio(cursoTecnico());
+            player.adicionaNaBio(graduacao());
             player.adicionaNaBio(fechamento());
         }
     }
@@ -91,7 +97,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
         opc = AuxLib.getOpc(opcs.length);
         brinquedo = opcs[opc-1];
 
-        variavel = (int) AuxLib.novoInteiro_p(5, 4, 12, 7);
+        variavel = (int) AuxLib.novoInteiro(5, 4, 12, 7);
 
         if(variavel > 5){
             //ganha o presente
@@ -129,7 +135,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
         player.setEsporteEscolhido(esporte);
 
         // pode participar de campeonatos e ganhar dinheiro
-        variavel = (int) AuxLib.novoInteiro_p(8, 9, 10, 2);
+        variavel = (int) AuxLib.novoInteiro(8, 9, 10, 2);
         if(variavel <= 8){
             //ganha os campeonatos
 

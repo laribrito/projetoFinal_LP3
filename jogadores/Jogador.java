@@ -50,8 +50,14 @@ abstract public class Jogador{
         }
     }
 
+    // Métodos abstratos ------------------------------------------------------------------------------
+    
+    abstract public boolean sacar(float valor, String senha);
+    
+    abstract public boolean depositar(float valor);
+    
     // Ações públicas -------------------------------------------------------------------------
-
+    
     /** Exibe a biografia do personagem */
     public void exibirBiografia(){
         AuxLib.limpaTela();
@@ -59,15 +65,7 @@ abstract public class Jogador{
         String bio = AuxLib.formatText(biografia, 60);
         System.out.println(bio);
     }
-
-    // Métodos abstratos ------------------------------------------------------------------------------
-
-    abstract public float getSaldo();
-
-    abstract public boolean sacar(float valor, String senha);
-
-    abstract public boolean depositar(float valor);
-
+    
     public void morreu(){
         estaVivo = false;
     }

@@ -62,7 +62,7 @@ public abstract class Conta {
         if(ehSenhaValida(senha)){
             this.senha = senha;
             numeroConta = numero_livre++;
-            saldo = AuxLib.novoInteiro_p(10, 8, 1000000, 2);
+            saldo = AuxLib.novoInteiro(10, 8, 1000000, 2);
         } else {
             System.out.println("A senha não é válida! Digite uma senha de tamanho "+ TAMANHO_SENHA +" somente com números");
         }
@@ -89,6 +89,7 @@ public abstract class Conta {
         return false;
     }
 
+    /** Retorna uma senha válida na forma de string */
     static public String geraSenha(){
         String senha="";
 
