@@ -54,6 +54,8 @@ abstract public class Jogador{
     
     abstract public boolean sacar(float valor, String senha);
     
+    abstract public float getSaldo();
+
     abstract public boolean depositar(float valor);
     
     // Ações públicas -------------------------------------------------------------------------

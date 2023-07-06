@@ -1,5 +1,7 @@
 package add;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -112,6 +114,15 @@ public abstract class AuxLib {
             e.printStackTrace();
         }
     }
+
+    /** Recebe uma string e um array de string e verifica se a string está presente como item na lista. Retorna um booleano */
+    static public boolean estaContido(String busca, String[] dados){
+        for(String item: dados){
+            if(item == busca) return true;
+        }
+
+        return false;
+    }
     
     /** Recebe um vetor de string e o exibe na tela com a formatação padrão do jogo */
     static public void exibeOpcs(String[] opcs){
@@ -120,6 +131,12 @@ public abstract class AuxLib {
         for(int x=1; x<=qtd; x++){
             System.out.println(AuxLib.estiloTXTOpc("["+ x +"] - "+ opcs[x-1]));
         }
+    }
+
+    /** Recebe um Arraylist de string e o exibe na tela com a formatação padrão do jogo */
+    static public void exibeOpcs(List<String> lista){
+        String[] opcs = lista.toArray(new String[0]);
+        exibeOpcs(opcs);
     }
 
     /** Recebe um valor inteiro max e valida a entrada de acordo com esse número, recebendo valores de 1 até max */

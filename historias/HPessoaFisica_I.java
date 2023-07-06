@@ -1,14 +1,18 @@
 package historias;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import add.AuxLib;
 import capitulos.BrinquedoCrianca;
 import capitulos.EsporteEscolar;
 import capitulos.VidaAcademica;
+import capitulos.VidaAdulta;
 import capitulos.FimDeVida;
 import jogadores.Jogador;
 import jogadores.JogadorPF;
 
-public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, EsporteEscolar, VidaAcademica, FimDeVida{
+public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, EsporteEscolar, VidaAcademica, VidaAdulta, FimDeVida{
     private JogadorPF player;
     private final static String[] 
         opcsBrinquedoInfantil = {
@@ -46,6 +50,13 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             "Se mudar para o campo ------------------- R$    3459.00",
             "Viver onde estava, de perna pra cima ---- R$       0.00",
             "Ver saldo da minha conta",
+        },
+        opcsTrabalho1 = {
+            "Arte na praia"
+        },
+        opcsTrabalho2 = {
+            "Uber",
+            "Entrega de aplicativos delivery"
         }
     ;
 
@@ -78,6 +89,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             player.adicionaNaBio(escolherEsporteEscolar());
             player.adicionaNaBio(cursoTecnico());
             player.adicionaNaBio(graduacao());
+            player.adicionaNaBio(trabalho());
             player.adicionaNaBio(fechamento());
         }
     }
@@ -215,7 +227,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
                     //tenta pagar o curso
                     System.out.print("\nDigite sua senha para pagar o curso: ");
                     senha = AuxLib.getSenhaConta();
-                    podePagar = player.sacar(valorOpcs[opc], senha);
+                    podePagar = player.sacar(valorCurso, senha);
                 }
                 
                 //verifica se pode pagar pelo curso
@@ -303,7 +315,7 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
                     //tenta pagar o curso
                     System.out.print("\nDigite sua senha para pagar o curso: ");
                     senha = AuxLib.getSenhaConta();
-                    podePagar = player.sacar(valorOpcs[opc], senha);
+                    podePagar = player.sacar(valorCurso, senha);
                 }
                 
                 //verifica se pode pagar pelo curso
@@ -328,6 +340,82 @@ public class HPessoaFisica_I extends Historia implements BrinquedoCrianca, Espor
             curso = strOpcs[opc-1];
             player.setFormacaoTecnica(curso);
             return "Batalhou bastante e depois de muito tempo se formou em "+ curso + ". ";
+        }
+    }
+
+    @Override
+    public String trabalho(){
+        List<String> opcs;
+        int opc, anosTrabalhados, maxSalario=0;
+        long ganhosVida = 0;
+        String cursoTecnico = player.getFormacaoTecnica(), graduacao = player.getFormacaoSuperior(), trabalho, strTrabalho;
+        
+        AuxLib.limpaTela();
+        if(cursoTecnico.isEmpty() && graduacao.isEmpty()){
+            //se o jogador não fez um curso técnico ou graduação
+            System.out.println("Pelo jeito você não quis estudar. Escolha o que deseja fazer agora: ");
+            opcs = new ArrayList<>(Arrays.asList(opcsTrabalho1));
+        } else {
+            System.out.println("Você buscou se aperfeiçoar e tem que tomar uma decisão importante\n agora. Escolha com o que deseja trabalhar: ");
+            //se o jogador fez algum curso ele pode seguir na área, ou ser uber
+            opcs = new ArrayList<>(Arrays.asList(opcsTrabalho2));
+            if(!cursoTecnico.isEmpty()){
+                opcs.add(1, cursoTecnico);
+            }
+
+            if(!graduacao.isEmpty()){
+                opcs.add(1, graduacao);
+            }
+        }
+
+        opcs.add("Não fazer nada");
+        
+        //se tem mais de 100000 de saldo, pode ser herdeiro
+        String herdeiro = "Sucessor da família";
+        if(player.getSaldo()>100000) opcs.add(herdeiro);
+
+        AuxLib.exibeOpcs(opcs);
+        opc = AuxLib.getOpc(opcs.size());
+        trabalho = opcs.get(opc-1);
+
+        //define a quantidade de anos trabalhados
+        anosTrabalhados = (int) AuxLib.novoInteiro(45, 7, 209, 3) + 1;
+
+        //define o limite do salário mensal
+        if(trabalho.equals(herdeiro)){
+            maxSalario = 98411;
+            System.out.println("\nParabéns pela vida mansa!");
+        } else if(AuxLib.estaContido(trabalho, opcsTrabalho1)){
+            System.out.println("\nQue seu deus te ajude!");
+            maxSalario = 562;
+        } else if(AuxLib.estaContido(trabalho, opcsTrabalho2)){
+            System.out.println("\nPersevere!");
+            maxSalario = 1149;
+        } else if(trabalho.equals(cursoTecnico)){
+            System.out.println("\nCursos técnicos são uma ótima opção para entrar no mercado de trabalho. Ainda bem que você aproveitou!");
+            maxSalario = 1576;
+        } else if(trabalho.equals(graduacao)){
+            System.out.println("\nAqui é um jogo, então sim! você vai ganhar dinheiro escolhendo trabalhar na sua área de graduação!");
+            maxSalario = 6124;
+        }
+        
+        //trata o nome do trabalho
+        if(trabalho.equals(herdeiro)) strTrabalho = "os negócios da família, reponsabilidade herdada sem motivo além disso.";
+        else if(trabalho.equals(graduacao)) strTrabalho = graduacao;
+        else strTrabalho = trabalho;
+
+        if(maxSalario==0){
+            return "Seguiu sem um rumo certo, até se cansar de ver os anos passarem. ";
+        } else {
+            for(int x = 1; x<=anosTrabalhados; x++){
+                ganhosVida += AuxLib.novoInteiro(maxSalario) * 12;
+            }
+            player.depositar(ganhosVida);
+
+            System.out.println("Há espaço para todo tipo de trabalho na sociedade capitalista.");
+            System.out.println("Escolhendo " + trabalho + " você ganhou R$ "+ AuxLib.formatarFloat(ganhosVida));
+            AuxLib.aguarde(8);
+            return "Passou " + anosTrabalhados + " anos trabalhando com " + strTrabalho.toLowerCase() + " e assim permaneceu durante a maior parte da vida. ";
         }
     }
 

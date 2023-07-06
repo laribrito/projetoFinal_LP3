@@ -75,6 +75,7 @@ public class JogadorPJ extends Jogador {
         return conta.getLimiteCredito();
     }
 
+    @Override
     public float getSaldo() {
         return conta.getSaldo();
     }

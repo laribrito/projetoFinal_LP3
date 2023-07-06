@@ -59,6 +59,9 @@ public class JogadorPF extends Jogador {
         if(validaConta(conta) && validaCPF(cpf)){
             this.conta = conta;
             this.cpf = cpf;
+            esporteEscolhido = "";
+            formacaoTecnica = "Programação";
+            formacaoSuperior = "Ciencias";
         } else {
             System.out.println("Não foi possível criar o jogador pessoa física");
         }
@@ -92,6 +95,11 @@ public class JogadorPF extends Jogador {
 
     public void printInfoConta(){
         System.out.println(conta);
+    }
+
+    @Override
+    public float getSaldo() {
+        return conta.getSaldo();
     }
 
     @Override

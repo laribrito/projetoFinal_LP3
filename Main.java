@@ -11,7 +11,7 @@ import jogadores.JogadorPF;
 import jogadores.JogadorPJ;
 
 public class Main {
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
     public static final int PF = 1;
     public static final int PJ = 2;
 
@@ -186,6 +186,7 @@ public class Main {
 
             //pessoa ou empresa, conta e tipo jogador
             opcTipoPessoa = (int) AuxLib.novoInteiro_nl(2); //int
+            opcTipoPessoa = 1;
             senhaConta = Conta.geraSenha(); // string
 
             //exibe a senha para a pessoa decorar
