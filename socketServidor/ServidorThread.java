@@ -3,6 +3,9 @@ package socketServidor;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import add.AuxLib;
+
+import org.json.JSONObject;
 
 class ServidorThread extends Thread {
 
@@ -31,5 +34,9 @@ class ServidorThread extends Thread {
         } catch (Exception e) {
             System.out.println("Erro na thread do servidor: " + e.getMessage());
         }
+    }
+
+    static public long novoInteiroMax(long max){
+        return AuxLib.novoInteiroMinMax(0,max);
     }
 }

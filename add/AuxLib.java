@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.json.JSONObject;
+
 import contas.Conta;
 
 public abstract class AuxLib {
@@ -23,8 +25,15 @@ public abstract class AuxLib {
     }
 
     /** Retorna um número entre 0 e o valor absoluto de max como long */
-    static public long novoInteiro(long max){
-        return novoInteiro(0, max);
+    static public long novoInteiroMax(long max){
+        JSONObject json = new JSONObject();
+        
+        json.put("operacao", "novoInteiroMax");
+        json.put("parametro1", max);
+
+        long resultado = 0;
+
+        return resultado;
     }
 
     /** Retorna um número entre min e o valor absoluto de max como long */
