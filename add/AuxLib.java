@@ -37,7 +37,14 @@ public abstract class AuxLib {
 
     /** Retorna um número entre min e o valor absoluto de max como long */
     static public long novoInteiro(long min, long max){
-        return (long)(gerador.nextDouble() * max-min)+min;
+        JSONObject json = new JSONObject();
+        json.put("operacao", "novoInteiroMinMax");
+        json.put("parametro1", min);
+        json.put("parametro2", max);
+
+        long resultado = 0;
+        //long resultado = chamadaDoServidor(json);
+        return resultado;
     }
 
     /** Retorna um número entre 0 e um limite, personalizado com probabilidade 

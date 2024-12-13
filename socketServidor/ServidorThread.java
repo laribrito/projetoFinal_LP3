@@ -11,8 +11,10 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import add.AuxLib;
 
+import java.util.Random;
 
 class ServidorThread extends Thread {
+    static private Random gerador = new Random();
 
     private Socket cliente;
     private ScheduledExecutorService timer;
@@ -173,5 +175,9 @@ class ServidorThread extends Thread {
 
     static public long novoInteiroMax(long max){
         return AuxLib.novoInteiroMinMax(0,max);
+    }
+
+    static public long novoInteiro(long min, long max){
+        return (long)(gerador.nextDouble() * max-min)+min;
     }
 }
