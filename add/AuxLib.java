@@ -32,7 +32,6 @@ public abstract class AuxLib {
         json.put("parametro1", max);
 
         long resultado = 0;
-
         return resultado;
     }
 

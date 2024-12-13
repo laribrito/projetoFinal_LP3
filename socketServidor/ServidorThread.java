@@ -36,6 +36,7 @@ class ServidorThread extends Thread {
         }
     }
 
+    
     static public long novoInteiroMax(long max){
         return AuxLib.novoInteiroMinMax(0,max);
     }
