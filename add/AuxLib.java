@@ -217,5 +217,4 @@ public abstract class AuxLib {
 
         return textoFormatado.toString();
     }
-
 }
