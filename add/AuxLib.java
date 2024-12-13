@@ -7,6 +7,7 @@ import java.util.Scanner;
 import org.json.JSONObject;
 
 import contas.Conta;
+import socketCliente.Cliente;
 
 public abstract class AuxLib {
     static public Scanner input  = new Scanner(System.in);
@@ -18,6 +19,8 @@ public abstract class AuxLib {
     private static final String UNDERLINE = "\u001B[4m";
 
     static private Random gerador = new Random();
+    //Coloquei isso aqui mas não sei onde que será feita essa conexão
+    static private Cliente cliente = new Cliente("localhost", 12345);
 
     /** Retorna um número entre 0 e o valor absoluto de max como String */
     static public String novoInteiroStr(long max){
@@ -25,13 +28,18 @@ public abstract class AuxLib {
     }
 
     /** Retorna um número entre 0 e o valor absoluto de max como long */
-    static public long novoInteiroMax(long max){
-        JSONObject json = new JSONObject();
+    static public long novoInteiro(long max){
+        JSONObject requisicao = new JSONObject();
         
-        json.put("operacao", "novoInteiroMax");
-        json.put("parametro1", max);
+        //cria a requisição
+        requisicao.put("operacao", "novoInteiroMax");
+        requisicao.put("parametro1", max);
 
-        long resultado = 0;
+        //comunica com o servidor para fazer as operações
+        JSONObject resposta = cliente.conversarComServidor(requisicao);
+        long resultado = resposta.getLong("resposta");
+        
+        //devolve o resultado para o jogo
         return resultado;
     }
 
