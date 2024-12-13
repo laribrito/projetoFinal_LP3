@@ -3,8 +3,12 @@ package socketServidor;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import java.util.Random;
+
+import org.json.JSONObject;
 
 class ServidorThread extends Thread {
+    static private Random gerador = new Random();
 
     private Socket cliente;
 
@@ -31,5 +35,9 @@ class ServidorThread extends Thread {
         } catch (Exception e) {
             System.out.println("Erro na thread do servidor: " + e.getMessage());
         }
+    }
+
+    static public long novoInteiro(long min, long max){
+        return (long)(gerador.nextDouble() * max-min)+min;
     }
 }
