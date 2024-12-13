@@ -21,12 +21,12 @@ abstract public class Jogador{
 
     /** STATIC - Verifica se o local de nascimento não é uma string vazia e retorna um booleano */
     static public boolean validaLocalNascimento(String local){
-        return !local.isBlank();
+        return !local.isEmpty();
     }
 
     /** STATIC - Verifica se o local de nascimento não é uma string vazia e retorna um booleano */
     static public boolean validaNome(String nome){
-        return !nome.isBlank();
+        return !nome.isEmpty();
     }
 
     /** Verifica se o a conta é válida pelo seu número. Se o número da conta for maior que 1000
