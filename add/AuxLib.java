@@ -36,11 +36,11 @@ public abstract class AuxLib {
         requisicao.put("parametro1", max);
 
         //comunica com o servidor para fazer as operações
-        JSONObject resposta = cliente.conversarComServidor(requisicao);
-        long resultado = resposta.getLong("resposta");
+        JSONObject resultado = cliente.conversarComServidor(requisicao);
+        long resposta = resultado.getLong("resultado");
         
         //devolve o resultado para o jogo
-        return resultado;
+        return resposta;
     }
 
     /** Retorna um número entre min e o valor absoluto de max como long */
