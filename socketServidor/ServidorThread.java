@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
-import add.AuxLib;
+
 
 import java.util.Random;
 
@@ -133,7 +133,7 @@ class ServidorThread extends Thread {
             case "novoInteiroStr":
                 return this.criarResposta(comando, 12);
             case "novoInteiroMax":
-                return this.criarResposta(comando, 12);
+                return this.novoInteiroMax(requisicao);
             case "novoInteiroMinMax":
                 return this.criarResposta(comando, 12);
             case "novoInteiroMinMaxProb":
@@ -173,8 +173,17 @@ class ServidorThread extends Thread {
         }
     }
 
-    static public long novoInteiroMax(long max){
-        return AuxLib.novoInteiroMinMax(0,max);
+    public JSONObject novoInteiroMax(JSONObject requisicao){
+        long max = requisicao.getLong("parametro1");
+        /*
+         * Como novoInteiroMinMax vai receber a requisição como parâmetro não coube puxar a função aqui
+         * Implementei a equação de MinMax aqui, com min = 0
+         */
+        long resultado = (long) (gerador.nextDouble() * max);
+
+        JSONObject resposta = criarResposta(this.pegaComando(requisicao), resultado);
+
+        return resposta;
     }
 
     static public long novoInteiro(long min, long max){
